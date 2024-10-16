@@ -1,0 +1,503 @@
+{
+    "rnx_IGS_daily": {
+        "sources": [
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_R_<YYYY><DOY>0000_01D_30S_MO.crx.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_S_<YYYY><DOY>0000_01D_30S_MO.crx.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_R_<YYYY><DOY>0000_01D_30S_MO.crx.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_S_<YYYY><DOY>0000_01D_30S_MO.crx.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/data/daily/<YYYY>/<DOY>/<YY>d/<SITE><DOY>0.<YY>d.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE><DOY>0.<YY>d.gz"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_CODE_OPS_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0OPSFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0OPSFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "http://ftp.aiub.unibe.ch/CODE/<YYYY>/COD0OPSFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/cod<WEEK><d>.eph.Z"
+            },
+            {
+                "url": "ftp://ftp.aiub.unibe.ch/CODE/<YYYY>/COD<WEEK><d>.EPH.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_CODE_OPS_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0OPSFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0OPSFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "http://ftp.aiub.unibe.ch/CODE/<YYYY>/COD0OPSFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/cod<WEEK><d>.clk.Z"
+            },
+            {
+                "url": "ftp://ftp.aiub.unibe.ch/CODE/<YYYY>/COD<WEEK><d>.CLK.Z"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/cod<WEEK><d>.clk_05s.Z"
+            },
+            {
+                "url": "ftp://ftp.aiub.unibe.ch/CODE/<YYYY>/COD<WEEK><d>.CLK_05S.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+    
+    "sp3_CODE_OPS_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0OPSRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0OPSRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.aiub.unibe.ch/CODE/<YYYY>_M/COD<WEEK><d>.EPH_M.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+    
+    "clk_CODE_OPS_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0OPSRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0OPSRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.aiub.unibe.ch/CODE/<YYYY>_M/COD<WEEK><d>.CLK_M.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_CODE_OPS_ultra": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0OPSULT_<YYYY><DOY><HH>00_02D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0OPSULT_<YYYY><DOY><HH>00_02D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 21600
+    },
+
+    "sp3_CODE_MGEX_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0MGXFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0MGXFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/com<WEEK><d>.sp3.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/com<WEEK><d>.sp3.Z",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_CODE_MGEX_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/COD0MGXFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/COD0MGXFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/com<WEEK><d>.clk.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/com<WEEK><d>.clk.Z",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_GFZ_OPS_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0OPSFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0OPSFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/final/w<WEEK>/GFZ0OPSFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/gfz<WEEK><d>.sp3.Z"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/final/w<WEEK>/gfz<WEEK><d>.sp3.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_GFZ_OPS_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0OPSFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0OPSFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/final/w<WEEK>/GFZ0OPSFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/gfz<WEEK><d>.clk.Z"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/final/w<WEEK>/gfz<WEEK><d>.clk.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+    
+    "sp3_GFZ_OPS_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0OPSRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0OPSRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/rapid/w<WEEK>/gfz<WEEK><d>.sp3.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_GFZ_OPS_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0OPSRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0OPSRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/rapid/w<WEEK>/gfz<WEEK><d>.clk.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_GFZ_OPS_ultra": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0OPSULT_<YYYY><DOY><HH>00_02D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0OPSULT_<YYYY><DOY><HH>00_02D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/ultra/w<WEEK>/gfu<WEEK><d>_<HH>.sp3.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 21600
+    },
+
+    "sp3_GFZ_MGEX_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0MGXRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0MGXRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/mgex/<WEEK>_IGS20/GBM0MGXRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/mgex/<WEEK>/GBM0MGXRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/gbm<WEEK><d>.sp3.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/gbm<WEEK><d>.sp3.Z",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/mgex/<WEEK>/gbm<WEEK><d>.sp3.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_GFZ_MGEX_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/GFZ0MGXRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/GFZ0MGXRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/mgex/<WEEK>_IGS20/GBM0MGXRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/mgex/<WEEK>/GBM0MGXRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/gbm<WEEK><d>.clk.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/gbm<WEEK><d>.clk.Z",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://ftp.gfz-potsdam.de/pub/GNSS/products/mgex/<WEEK>/gbm<WEEK><d>.clk.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_WHU_MGEX_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/wum<WEEK><d>.sp3.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/wum<WEEK><d>.sp3.Z",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_WHU_MGEX_final": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/wum<WEEK><d>.clk.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/wum<WEEK><d>.clk.Z",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_WHU_MGEX_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/WUM0MGXRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXRAP_<YYYY><DOY>0000_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "clk_WHU_MGEX_rapid": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/WUM0MGXRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXRAP_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "sp3_WHU_MGEX_ultra": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXULT_<YYYY><DOY><HH>00_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXULA_<YYYY><DOY><HH>00_01D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXNRT_<YYYY><DOY><HH>00_02D_05M_ORB.SP3.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXULT_<YYYY><DOY><HH>00_01D_05M_ORB.SP3.gz",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 3600
+    },
+
+    "clk_WHU_MGEX_ultra": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXULT_<YYYY><DOY><HH>00_01D_05M_CLK.CLK.gz"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXNRT_<YYYY><DOY><HH>00_02D_30S_CLK.CLK.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXULT_<YYYY><DOY><HH>00_01D_05M_CLK.CLK.gz",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 3600
+    },
+
+    "GIM_CODE" : {
+        "sources": [
+            {
+                "url": "http://ftp.aiub.unibe.ch/CODE/<YYYY>/COD0OPSFIN_<YYYY><DOY>0000_01D_01H_GIM.INX.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/ionex/<YYYY>/<DOY>/COD0OPSFIN_<YYYY><DOY>0000_01D_01H_GIM.INX.gz",
+                "username": "******",
+                "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/ionex/<YYYY>/<DOY>/COD0OPSFIN_<YYYY><DOY>0000_01D_01H_GIM.INX.gz"
+            },
+            {
+                "url": "http://ftp.aiub.unibe.ch/CODE/<YYYY>/CODG<DOY>0.<YY>I.Z"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/ionex/<YYYY>/<DOY>/codg<DOY>0.<YY>i.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/ionex/<YYYY>/<DOY>/codg<DOY>0.<YY>i.Z",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    }, 
+
+    "doris_cs2" : {
+        "sources": [
+            {
+                "url": "ftps://gdc.cddis.eosdis.nasa.gov/doris/data/cs2/<YYYY>/cs2rx<YY><DOY>.001.Z"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    }
+}
