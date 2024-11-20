@@ -462,6 +462,65 @@
         "interval": 3600
     },
 
+<<<<<<< HEAD
+=======
+    "snx_IGS_weekly": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/IGS0OPSSNX_<YYYY><DOY>0000_07D_07D_SOL.SNX.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/IGS0OPSSNX_<YYYY><DOY>0000_07D_07D_SOL.SNX.gz",
+                "username": "xunhou",
+                "password": "426831Jtw"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/igs<YY>P<WEEK>.snx.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/igs<YY>P<WEEK>.snx.Z",
+                "username": "xunhou",
+                "password": "426831Jtw"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+
+    "snx_IGS_daily": {
+        "sources": [
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/IGS0OPSSNX_<YYYY><DOY>0000_01D_01D_SOL.SNX.gz"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/IGS0OPSSNX_<YYYY><DOY>0000_01D_01D_SOL.SNX.gz",
+                "username": "xunhou",
+                "password": "426831Jtw"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/igs<YY>P<WEEK><d>.snx.Z"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/gnss/products/igs<YY>P<WEEK><d>.snx.Z",
+                "username": "xunhou",
+                "password": "426831Jtw"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 86400
+    },
+    
+    "atx_IGS": {
+        "sources": [
+            {
+                "url": "https://files.igs.org/pub/station/general/igs20.atx"
+            }
+        ],
+        "time system": "GPST",
+        "interval": 604800
+    },
+
+>>>>>>> dd5ac3e (fix bugs and add sources)
     "GIM_CODE" : {
         "sources": [
             {
@@ -489,6 +548,7 @@
         ],
         "time system": "GPST",
         "interval": 86400
+<<<<<<< HEAD
     }, 
 
     "doris_cs2" : {
@@ -499,5 +559,7 @@
         ],
         "time system": "GPST",
         "interval": 86400
+=======
+>>>>>>> dd5ac3e (fix bugs and add sources)
     }
 }

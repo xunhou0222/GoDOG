@@ -89,6 +89,8 @@ func doJob(job *tJob) (err error) {
 			terr = network.CDDISDownLoad(&f)
 		} else if f.Source.IsHttp() {
 			terr = network.HTTPDownload(&f)
+		} else if f.Source.IsHttps() {
+			terr = network.HTTPDownload(&f)
 		} else {
 			continue
 		}

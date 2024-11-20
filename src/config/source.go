@@ -52,7 +52,7 @@ func ParseJsonSource(path string, jNetSource map[string]NetSource) error {
 		ns.Interval = val.Interval
 
 		for _, s := range val.Sources {
-			if ! ( s.IsFtp() || s.IsFtps() || s.IsHttp() || s.IsHttpsCddis() ) {
+			if ! ( s.IsFtp() || s.IsFtps() || s.IsHttp() || s.IsHttps() || s.IsHttpsCddis() ) {
 				return fmt.Errorf(`unsupported type of "URL" for "%s"`, kw)
 			}
 

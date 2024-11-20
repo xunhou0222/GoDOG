@@ -71,6 +71,11 @@ func (s *NetInfo) IsHttp() bool {
 		return strings.Contains(s.URL, "http://")
 }
 
+func (s *NetInfo) IsHttps() bool {
+	return strings.Contains(s.URL, "https://") && 
+	       (! strings.Contains(s.URL, "https://cddis") )
+}
+
 func (s *NetInfo) IsHttpsCddis() bool {
 	return strings.Contains(s.URL, "https://cddis")
 }
