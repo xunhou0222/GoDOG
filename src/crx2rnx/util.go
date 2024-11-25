@@ -266,9 +266,9 @@ func printClock(upper, lower int64, shift int, buffer *[]byte) error {
 	}
 
 	if lower < 0 {
-		tmpStr = fmt.Sprintf("%8.8d", -lower)
+		tmpStr = fmt.Sprintf("%8.8d\n", -lower)
 	} else {
-		tmpStr = fmt.Sprintf("%8.8d", lower)
+		tmpStr = fmt.Sprintf("%8.8d\n", lower)
 	}
 
 	*buffer = append(*buffer, tmpStr...)
