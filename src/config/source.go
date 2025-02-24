@@ -20,7 +20,7 @@ type NetSource struct {
 	Interval int
 }
 
-func ParseJsonSource(path string, jNetSource map[string]NetSource) error {
+func parseJsonSource(path string, jNetSource map[string]NetSource) error {
 	fp, err := os.Open(path)
 
 	if err != nil {
@@ -52,7 +52,7 @@ func ParseJsonSource(path string, jNetSource map[string]NetSource) error {
 		ns.Interval = val.Interval
 
 		for _, s := range val.Sources {
-			if ! ( s.IsFtp() || s.IsFtps() || s.IsHttp() || s.IsHttps() || s.IsHttpsCddis() ) {
+			if !(s.IsFtp() || s.IsFtps() || s.IsHttp() || s.IsHttps() || s.IsHttpsCddis()) {
 				return fmt.Errorf(`unsupported type of "URL" for "%s"`, kw)
 			}
 

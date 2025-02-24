@@ -31,7 +31,7 @@ func main() {
 	flag.Parse()
 
 	cfgFile = filepath.ToSlash(cfgFile)
-	err := config.ParseJsonConfig(cfgFile, &cfg)
+	err := cfg.ParseJson(cfgFile)
 
 	if err != nil {
 		panic(fmt.Sprintf("[FATAL] failed to parse the config file (json), %s", err))

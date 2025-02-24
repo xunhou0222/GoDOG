@@ -239,7 +239,7 @@ func procTasks() error {
 				job.Time = t
 
 				if task.IsRnxIGSTask() {
-					for _, site := range config.SiteListMap[task.Type] {
+					for _, site := range config.TargetListMap[task.Type] {
 						job.Name = site
 						job.Path = getPathURL(t, site, task.Path)
 						chJobQue <- job

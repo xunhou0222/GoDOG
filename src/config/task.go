@@ -5,8 +5,8 @@ import "strings"
 type Task struct {
 	Type     string
 	Path     string
-	Backward int   
-	Forward  int   
+	Backward int
+	Forward  int
 	IfUnzip  bool
 }
 
@@ -17,10 +17,10 @@ type tmpTask struct {
 	Forward  int      `json:"forward"`
 	IfUnzip  string   `json:"uncompress"`
 	InfoFile string   `json:"information"`
-	Sites    []string `json:"sites"`
+	Targets  []string `json:"targets"`
 }
 
 func (t *Task) IsRnxIGSTask() bool {
-	return strings.Contains(strings.ToLower(t.Type), "rnx") && 
-	       strings.Contains(strings.ToUpper(t.Type), "IGS")
+	return strings.Contains(strings.ToLower(t.Type), "rnx") &&
+		strings.Contains(strings.ToUpper(t.Type), "IGS")
 }

@@ -15,30 +15,30 @@ const (
 )
 
 var (
-	siteInfoMap  map[string]*SiteInfoArray = make (map[string]*SiteInfoArray)
-	SiteListMap  map[string][]string  = make (map[string][]string)
-	NetSourceMap map[string]NetSource = make(map[string]NetSource)
+	targetInfoMap map[string]*TargetInfoArray = make(map[string]*TargetInfoArray)
+	TargetListMap map[string][]string         = make(map[string][]string)
+	NetSourceMap  map[string]NetSource        = make(map[string]NetSource)
 )
 
 type Config struct {
-	StTime    gnsstime.GNSSTime
-	EdTime    gnsstime.GNSSTime
-	GoNum     int
-	LogFile   string
-	Tasks     []Task
-	JobNum    int
+	StTime  gnsstime.GNSSTime
+	EdTime  gnsstime.GNSSTime
+	GoNum   int
+	LogFile string
+	Tasks   []Task
+	JobNum  int
 }
 
 type tmpConfig struct {
-	StTime      string    `json:"start time"`
-	EdTime      string    `json:"end time"`
-	GoNum       int       `json:"goroutine num"`
-	SourceFile  string    `json:"source file"`
-	LogFile     string    `json:"log file"`
-	Tasks       []tmpTask `json:"tasks"`
+	StTime     string    `json:"start time"`
+	EdTime     string    `json:"end time"`
+	GoNum      int       `json:"goroutine num"`
+	SourceFile string    `json:"source file"`
+	LogFile    string    `json:"log file"`
+	Tasks      []tmpTask `json:"tasks"`
 }
 
-func ParseJsonConfig(path string, cfg *Config) error {
+func (cfg *Config) ParseJson(path string) error {
 	fp, err := os.Open(path)
 
 	if err != nil {
@@ -67,8 +67,8 @@ func ParseJsonConfig(path string, cfg *Config) error {
 		return fmt.Errorf(`"goroutine num" is not specified`)
 	} else if cfgTmp.SourceFile == "" {
 		return fmt.Errorf(`"source file" is not specified`)
-	// } else if cfgTmp.LogFile == "" {
-	// 	return fmt.Errorf(`"Logfile" is not specified`)
+		// } else if cfgTmp.LogFile == "" {
+		// 	return fmt.Errorf(`"Logfile" is not specified`)
 	} else if len(cfgTmp.Tasks) == 0 {
 		return fmt.Errorf(`"tasks" is not specified`)
 	}
@@ -100,7 +100,7 @@ func ParseJsonConfig(path string, cfg *Config) error {
 
 	// source check
 	cfgTmp.SourceFile = filepath.ToSlash(cfgTmp.SourceFile)
-	err = ParseJsonSource(cfgTmp.SourceFile, NetSourceMap)
+	err = parseJsonSource(cfgTmp.SourceFile, NetSourceMap)
 
 	if err != nil {
 		return err
@@ -113,16 +113,16 @@ func ParseJsonConfig(path string, cfg *Config) error {
 
 	for idx, vTmp := range cfgTmp.Tasks {
 		if _, ok := NetSourceMap[vTmp.Type]; !ok {
-			return fmt.Errorf(`invalid "type" of the %d-th task specified in "tasks"`, idx + 1)
+			return fmt.Errorf(`invalid "type" of the %d-th task specified in "tasks"`, idx+1)
 		}
 
 		val.Type = vTmp.Type
 		val.Path = filepath.ToSlash(vTmp.Path)
 
 		if val.Backward < 0 {
-			return fmt.Errorf(`invalid "backward" of the %d-th task specified in "tasks"`, idx + 1)
+			return fmt.Errorf(`invalid "backward" of the %d-th task specified in "tasks"`, idx+1)
 		} else if val.Forward < 0 {
-			return fmt.Errorf(`invalid "forward" of the %d-th task specified in "tasks"`, idx + 1)
+			return fmt.Errorf(`invalid "forward" of the %d-th task specified in "tasks"`, idx+1)
 		}
 
 		val.Backward, val.Forward = vTmp.Backward, vTmp.Forward
@@ -138,31 +138,31 @@ func ParseJsonConfig(path string, cfg *Config) error {
 		if val.IsRnxIGSTask() {
 			if vTmp.InfoFile != "" {
 				ifCheck = true
-				siteInfoMap[val.Type] = new(SiteInfoArray)
-				err = parseJsonSiteInfo(vTmp.InfoFile, siteInfoMap[val.Type])
+				targetInfoMap[val.Type] = new(TargetInfoArray)
+				err = targetInfoMap[val.Type].parseJson(vTmp.InfoFile)
 
 				if err != nil {
-					return fmt.Errorf(`failed to parse the information file (json) specified in "information" for the %d-th task`, idx + 1)
+					return fmt.Errorf(`failed to parse the information file (json) specified in "information" for the %d-th task`, idx+1)
 				}
 			}
 
-			if len(vTmp.Sites) == 0 {
-				for _, site := range siteInfoMap[val.Type].Array {
-					SiteListMap[val.Type] = append( SiteListMap[val.Type], strings.ToUpper(site.Name) )
+			if len(vTmp.Targets) == 0 {
+				for _, site := range targetInfoMap[val.Type].Array {
+					TargetListMap[val.Type] = append(TargetListMap[val.Type], strings.ToUpper(site.Name))
 				}
 			} else {
-				for i, site := range vTmp.Sites {
+				for i, site := range vTmp.Targets {
 					if ifCheck {
-						if j := siteInfoMap[val.Type].Index(site); j != -1 {
-							site = siteInfoMap[val.Type].Array[j].Name
+						if j := targetInfoMap[val.Type].Index(site); j != -1 {
+							site = targetInfoMap[val.Type].Array[j].Name
 						} else {
-							return fmt.Errorf(`invalid name "%s" of the %d-th site specified in "sites" for the %d-th task`, site, i + 1, idx + 1)
+							return fmt.Errorf(`invalid name "%s" of the %d-th site specified in "sites" for the %d-th task`, site, i+1, idx+1)
 						}
 					} else if len(site) != 9 {
-						return fmt.Errorf(`invalid name "%s" of the %d-th site specified in "sites" for the %d-th task`, site, i + 1, idx + 1)
+						return fmt.Errorf(`invalid name "%s" of the %d-th site specified in "sites" for the %d-th task`, site, i+1, idx+1)
 					}
-	
-					SiteListMap[val.Type] = append( SiteListMap[val.Type], strings.ToUpper(site) )
+
+					TargetListMap[val.Type] = append(TargetListMap[val.Type], strings.ToUpper(site))
 				}
 			}
 		}
@@ -172,7 +172,7 @@ func ParseJsonConfig(path string, cfg *Config) error {
 		numTaskMap[val.Type] += 1
 
 		if numTaskMap[val.Type] > 1 {
-			return fmt.Errorf(`duplicated "type" of the %d-th task specified in "tasks"`, idx + 1)
+			return fmt.Errorf(`duplicated "type" of the %d-th task specified in "tasks"`, idx+1)
 		}
 	}
 
@@ -208,7 +208,7 @@ func ParseJsonConfig(path string, cfg *Config) error {
 			}
 
 			if task.IsRnxIGSTask() {
-				cfg.JobNum += len(SiteListMap[task.Type])
+				cfg.JobNum += len(TargetListMap[task.Type])
 			} else {
 				cfg.JobNum += 1
 			}

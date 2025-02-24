@@ -7,23 +7,23 @@
                 "password": "******"
             },
             {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_R_<YYYY><DOY>0000_01D_30S_MO.crx.gz"
+            },
+            {
                 "url": "https://cddis.nasa.gov/archive/gnss/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_S_<YYYY><DOY>0000_01D_30S_MO.crx.gz",
                 "username": "******",
                 "password": "******"
             },
             {
-                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_R_<YYYY><DOY>0000_01D_30S_MO.crx.gz"
-            },
-            {
                 "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_S_<YYYY><DOY>0000_01D_30S_MO.crx.gz"
             },
             {
-                "url": "https://cddis.nasa.gov/archive/gnss/data/daily/<YYYY>/<DOY>/<YY>d/<SITE><DOY>0.<YY>d.gz",
+                "url": "https://cddis.nasa.gov/archive/gnss/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_R_<YYYY><DOY>0000_01D_15S_MO.crx.gz",
                 "username": "******",
                 "password": "******"
             },
             {
-                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE><DOY>0.<YY>d.gz"
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/data/daily/<YYYY>/<DOY>/<YY>d/<SITE_LONG>_S_<YYYY><DOY>0000_01D_15S_MO.crx.gz"
             }
         ],
         "time system": "GPST",
@@ -358,6 +358,9 @@
                 "password": "******"
             },
             {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_15M_ORB.SP3.gz"
+            },
+            {
                 "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/wum<WEEK><d>.sp3.Z"
             },
             {
@@ -379,6 +382,9 @@
                 "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz",
                 "username": "******",
                 "password": "******"
+            },
+            {
+                "url": "ftp://igs.gnsswhu.cn/pub/gps/products/mgex/<WEEK>/WUM0MGXFIN_<YYYY><DOY>0000_01D_30S_CLK.CLK.gz"
             },
             {
                 "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/wum<WEEK><d>.clk.Z"
@@ -462,8 +468,6 @@
         "interval": 3600
     },
 
-<<<<<<< HEAD
-=======
     "snx_IGS_weekly": {
         "sources": [
             {
@@ -471,16 +475,16 @@
             },
             {
                 "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/IGS0OPSSNX_<YYYY><DOY>0000_07D_07D_SOL.SNX.gz",
-                "username": "xunhou",
-                "password": "426831Jtw"
+                "username": "******",
+                "password": "******"
             },
             {
                 "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/igs<YY>P<WEEK>.snx.Z"
             },
             {
                 "url": "https://cddis.nasa.gov/archive/gnss/products/igs<YY>P<WEEK>.snx.Z",
-                "username": "xunhou",
-                "password": "426831Jtw"
+                "username": "******",
+                "password": "******"
             }
         ],
         "time system": "GPST",
@@ -494,22 +498,21 @@
             },
             {
                 "url": "https://cddis.nasa.gov/archive/gnss/products/<WEEK>/IGS0OPSSNX_<YYYY><DOY>0000_01D_01D_SOL.SNX.gz",
-                "username": "xunhou",
-                "password": "426831Jtw"
+                "username": "******",
+                "password": "******"
             },
             {
                 "url": "ftp://igs.gnsswhu.cn/pub/gps/products/<WEEK>/igs<YY>P<WEEK><d>.snx.Z"
             },
             {
                 "url": "https://cddis.nasa.gov/archive/gnss/products/igs<YY>P<WEEK><d>.snx.Z",
-                "username": "xunhou",
-                "password": "426831Jtw"
+                "username": "******",
+                "password": "******"
             }
         ],
         "time system": "GPST",
         "interval": 86400
     },
-    
     "atx_IGS": {
         "sources": [
             {
@@ -519,8 +522,6 @@
         "time system": "GPST",
         "interval": 604800
     },
-
->>>>>>> dd5ac3e (fix bugs and add sources)
     "GIM_CODE" : {
         "sources": [
             {
@@ -548,18 +549,32 @@
         ],
         "time system": "GPST",
         "interval": 86400
-<<<<<<< HEAD
     }, 
 
-    "doris_cs2" : {
+    "npt_crd_v2_ILRS_monthly": {
         "sources": [
             {
-                "url": "ftps://gdc.cddis.eosdis.nasa.gov/doris/data/cs2/<YYYY>/cs2rx<YY><DOY>.001.Z"
+                "url": "ftp://edc.dgfi.tum.de/pub/slr/data/npt_crd_v2/<REPR>/<YYYY>/<REPR>_<YYYY><MM>.np2"
+            },
+            {
+                "url": "https://cddis.nasa.gov/archive/slr/data/npt_crd_v2/<REPR>/<YYYY>/<REPR>_<YYYY><MM>.np2",
+                "username": "******",
+                "password": "******"
             }
         ],
-        "time system": "GPST",
-        "interval": 86400
-=======
->>>>>>> dd5ac3e (fix bugs and add sources)
+        "time system": "UTC",
+        "interval": 2678400
+    },
+
+    "snx_une_ILRS": {
+        "sources": [
+            {
+                "url": "https://cddis.nasa.gov/archive/slr/slrecc/ecc_une.snx",
+                "username": "******",
+                "password": "******"
+            }
+        ],
+        "time system": "UTC",
+        "interval": 604800
     }
 }

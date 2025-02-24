@@ -14,7 +14,7 @@
             "backward": 0,
             "forward": 0,
             "information": "/data/GoDOG/data/IGSSiteInfo.json",
-            "sites": [
+            "targets": [
                 "aira",
                 "ALIC",
                 "AMC4",
@@ -189,12 +189,6 @@
         {
             "type": "GIM_CODE",
             "path": "/data/GoDOG/disk/GIM/COD0OPSFIN_<YYYY><DOY>0000_01D_01H_GIM.INX",
-            "backward": 0,
-            "forward" : 0
-        }, 
-        {
-            "type": "doris_cs2",
-            "path": "/data/GoDOG/disk/doris/<YYYY>/cs2rx<YY><DOY>.001",
             "backward": 0,
             "forward" : 0
         }
