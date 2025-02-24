@@ -24,3 +24,8 @@ func (t *Task) IsRnxIGSTask() bool {
 	return strings.Contains(strings.ToLower(t.Type), "rnx") &&
 		strings.Contains(strings.ToUpper(t.Type), "IGS")
 }
+
+func (t *Task) IsCrdILRSTask() bool {
+	return strings.Contains(strings.ToLower(t.Type), "crd") &&
+		strings.Contains(strings.ToUpper(t.Type), "ILRS")
+}

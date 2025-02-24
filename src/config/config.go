@@ -165,6 +165,10 @@ func (cfg *Config) ParseJson(path string) error {
 					TargetListMap[val.Type] = append(TargetListMap[val.Type], strings.ToUpper(site))
 				}
 			}
+		} else if val.IsCrdILRSTask() {
+			for _, sat := range vTmp.Targets {
+				TargetListMap[val.Type] = append(TargetListMap[val.Type], sat)
+			}
 		}
 
 		cfg.Tasks = append(cfg.Tasks, val)
@@ -207,7 +211,7 @@ func (cfg *Config) ParseJson(path string) error {
 				return fmt.Errorf("invalid epoch while processing the %d-th task", idx+1)
 			}
 
-			if task.IsRnxIGSTask() {
+			if task.IsRnxIGSTask() || task.IsCrdILRSTask() {
 				cfg.JobNum += len(TargetListMap[task.Type])
 			} else {
 				cfg.JobNum += 1

@@ -35,14 +35,15 @@ var (
 	mutexDir sync.Mutex
 )
 
-func getPathURL(t gnsstime.GNSSTime, SiteName, template string) string {
+func getPathURL(t gnsstime.GNSSTime, name, template string) string {
 	template = t.StrFormat(template, 0)
 
-	if len(SiteName) == 9 {
-		template = strings.ReplaceAll(template, "<SITE>", strings.ToLower(SiteName[0:4]))
-		template = strings.ReplaceAll(template, "<SITE_LONG>", strings.ToUpper(SiteName))
+	if len(name) == 9 {
+		template = strings.ReplaceAll(template, "<SITE>", strings.ToLower(name[0:4]))
+		template = strings.ReplaceAll(template, "<SITE_LONG>", strings.ToUpper(name))
 	}
 
+	template = strings.ReplaceAll(template, "<REPR>", name)
 	return template
 }
 
@@ -238,10 +239,10 @@ func procTasks() error {
 
 				job.Time = t
 
-				if task.IsRnxIGSTask() {
-					for _, site := range config.TargetListMap[task.Type] {
-						job.Name = site
-						job.Path = getPathURL(t, site, task.Path)
+				if task.IsRnxIGSTask() || task.IsCrdILRSTask() {
+					for _, target := range config.TargetListMap[task.Type] {
+						job.Name = target
+						job.Path = getPathURL(t, target, task.Path)
 						chJobQue <- job
 					}
 				} else {
