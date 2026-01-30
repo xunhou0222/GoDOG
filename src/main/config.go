@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"godog/datetime"
 	"log"
-	"math"
 	"os"
 	"path/filepath"
 )
@@ -111,14 +110,14 @@ func (cfg *Config) ParseJson(cfgFile string) error {
 	cfg.RetryNum = tCfg.RetryNum
 
 	// check tasks, and get the total number of jobs
-	cfg.Tasks = make([]Task, 0, len(tCfg.Tasks))
-
 	var (
 		numTaskMap    = make(map[string]int)
 		ts, te, dt, t datetime.Time
 		ordInt        int32
 		ordDec        float64
 	)
+
+	cfg.Tasks = make([]Task, 0, len(tCfg.Tasks))
 
 	for idx, task := range tCfg.Tasks {
 		if _, ok := rsMap[task.Type]; !ok {
@@ -180,7 +179,7 @@ func (cfg *Config) ParseJson(cfgFile string) error {
 		ordInt = int32(ordDec)
 		ordDec -= float64(ordInt)
 
-		if math.Abs(ordDec) < datetime.TIME_EPSILON {
+		if -datetime.TIME_EPSILON < ordDec && ordDec < datetime.TIME_EPSILON {
 			ordDec = 0
 		}
 

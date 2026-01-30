@@ -8,7 +8,6 @@ import (
 	"godog/unzip"
 	"io"
 	"log"
-	"math"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -30,20 +29,16 @@ type Job struct {
 	IsTmp bool
 }
 
-/***** VARIABLE ********************************/
-
-var (
-	mutexDir sync.Mutex
-)
-
 /***** FUNCTION ********************************/
 
 func getPathURL(t datetime.Time, name, template string) string {
-	re := regexp.MustCompile(`{([+-]?)(\d?)\.?(\d?)([Rr])}`)
-	var flag byte
-	var width, precision int
-	var hasSpecifiers bool
-	var fmtStr, resStr string
+	var (
+		flag             byte
+		width, precision int
+		hasSpecifiers    bool
+		fmtStr, resStr   string
+		re               = regexp.MustCompile(`{([+-]?)(\d?)\.?(\d?)([Rr])}`)
+	)
 
 	for _, matched := range re.FindAllStringSubmatch(template, -1) {
 		hasSpecifiers = false
@@ -91,62 +86,53 @@ func getPathURL(t datetime.Time, name, template string) string {
 /***********************************************/
 
 func doJob(job *Job) (err error) {
-	_, err = os.Stat(job.Path)
-
-	if err == nil && !job.Force {
+	if _, err = os.Stat(job.Path); err == nil && !job.Force {
 		return io.EOF
 	}
 
-	dir := filepath.Dir(job.Path)
+	var (
+		dir                      = filepath.Dir(job.Path)
+		netTask                  = network.NetworkTask{Continue: true}
+		tErr                     network.TaskError
+		srcFile, desFile, extZip string
+		ifZip                    bool
+	)
 
-	mutexDir.Lock()
-	_, err = os.Stat(dir)
-
-	if os.IsNotExist(err) {
-		os.MkdirAll(dir, 0775)
-	}
-
-	mutexDir.Unlock()
-
-	f := network.NetworkTask{Continue: true}
-	var terr network.TaskError
-	var srcFile, desFile, extZip string
-	var ifZip bool
-
+	os.MkdirAll(dir, 0775)
 	job.Index = 0
 
 	for _, s := range rsMap[job.Type].Sources {
 		// download
 		err = nil
-		f.Source.Url = getPathURL(job.Time, job.Name, s.Url)
-		f.Source.UserName = s.UserName
-		f.Source.Password = s.Password
-		f.Path = filepath.ToSlash(filepath.Join(dir, filepath.Base(f.Source.Url)))
+		netTask.Source.Url = getPathURL(job.Time, job.Name, s.Url)
+		netTask.Source.UserName = s.UserName
+		netTask.Source.Password = s.Password
+		netTask.Path = filepath.ToSlash(filepath.Join(dir, filepath.Base(netTask.Source.Url)))
 		job.Index++
 
-		if f.Source.IsFtp() {
-			terr = network.FTPDownload(&f)
-		} else if f.Source.IsFtps() {
-			terr = network.FTPSDownload(&f)
-		} else if f.Source.IsHttpsCddis() {
-			terr = network.CDDISDownLoad(&f)
-		} else if f.Source.IsHttp() {
-			terr = network.HTTPDownload(&f)
-		} else if f.Source.IsHttps() {
-			terr = network.HTTPDownload(&f)
+		if netTask.Source.IsFtp() {
+			tErr = network.FTPDownload(&netTask)
+		} else if netTask.Source.IsFtps() {
+			tErr = network.FTPSDownload(&netTask)
+		} else if netTask.Source.IsHttpsCddis() {
+			tErr = network.CDDISDownLoad(&netTask)
+		} else if netTask.Source.IsHttp() {
+			tErr = network.HTTPDownload(&netTask)
+		} else if netTask.Source.IsHttps() {
+			tErr = network.HTTPDownload(&netTask)
 		} else {
 			continue
 		}
 
-		if terr != nil {
-			job.IsTmp = job.IsTmp || terr.IsTemporary()
-			err = terr
-			os.Remove(f.Path)
+		if tErr != nil {
+			job.IsTmp = job.IsTmp || tErr.IsTemporary()
+			err = tErr
+			os.Remove(netTask.Path)
 			continue
 		}
 
 		// uncompress
-		srcFile, desFile = f.Path, f.Path
+		srcFile, desFile = netTask.Path, netTask.Path
 		err = nil
 		extZip = filepath.Ext(srcFile)
 
@@ -222,9 +208,11 @@ func doJob(job *Job) (err error) {
 /***********************************************/
 
 func process() error {
-	GoNumJob := min(jobNum, cfg.GoNum)
-	chJobQue := make(chan Job, GoNumJob)
-	chJobMsg := make(chan string, GoNumJob)
+	var (
+		wg       sync.WaitGroup
+		goJobNum = min(jobNum, cfg.GoNum)
+		chJobQue = make(chan Job, goJobNum)
+	)
 
 	// distribute jobs
 	go func() {
@@ -245,7 +233,7 @@ func process() error {
 			ordInt = int32(ordDec)
 			ordDec -= float64(ordInt)
 
-			if math.Abs(ordDec) < datetime.TIME_EPSILON {
+			if -datetime.TIME_EPSILON < ordDec && ordDec < datetime.TIME_EPSILON {
 				ordDec = 0
 			}
 
@@ -265,35 +253,42 @@ func process() error {
 				}
 			}
 		}
+
+		close(chJobQue)
 	}()
 
 	// do jobs
-	for i := 0; i < GoNumJob; i++ {
+	for i := 0; i < goJobNum; i++ {
+		wg.Add(1)
+
 		go func() {
 			var count int
+			var msg string
 
 			for job := range chJobQue {
 				for count = 0; count <= cfg.RetryNum; count++ {
 					if err := doJob(&job); err == nil {
-						chJobMsg <- fmt.Sprintf("[info] finished to download %s, source index %d, attempt num %d", job.Path, job.Index, count+1)
+						msg = fmt.Sprintf("[info] finished to download %s, source index %d, attempt num %d", job.Path, job.Index, count+1)
 						break
 					} else if err == io.EOF {
-						chJobMsg <- fmt.Sprintf("[info] %s already exists", job.Path)
+						msg = fmt.Sprintf("[info] %s already exists", job.Path)
 						break
 					}
 				}
 
 				if count > cfg.RetryNum {
-					chJobMsg <- fmt.Sprintf("[ERROR] failed to download %s, attempt num %d", job.Path, count)
+					msg = fmt.Sprintf("[ERROR] failed to download %s, attempt num %d", job.Path, count)
 				}
+
+				log.Println(msg)
 			}
+
+			wg.Done()
 		}()
 	}
 
-	// write log for each job
-	for i := 0; i < jobNum; i++ {
-		log.Println(<-chJobMsg)
-	}
+	// wait for all jobs to complete
+	wg.Wait()
 
 	return nil
 }
